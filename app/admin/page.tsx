@@ -284,7 +284,7 @@ export default function AdminPage() {
             type="button"
             onClick={() =>
   (window.location.href =
-    "/inventory/admin/novo-produto")
+    "/inventory/admin/novo-produto/")
 }
             className="mt-7 bg-black text-white px-5 py-3 rounded-xl font-medium"
           >
@@ -408,7 +408,7 @@ export default function AdminPage() {
                             type="button"
                             onClick={() =>
   (window.location.href =
-    `/inventory/admin/editar-produto?id=${produto.id}`)
+    `/inventory/admin/editar-produto/?id=${produto.id}`)
 }
                             className="bg-black text-white px-4 py-2 rounded-lg text-sm"
                           >
