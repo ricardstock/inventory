@@ -51,7 +51,7 @@ export default function EditarProdutoPage() {
 
     if (!idUrl || Number.isNaN(idUrl)) {
       alert("ID do produto inválido.");
-      window.location.href = "/admin";
+window.location.href = "/inventory/admin";
       return;
     }
 
@@ -96,7 +96,7 @@ export default function EditarProdutoPage() {
         );
 
         alert("Erro ao carregar o produto.");
-        window.location.href = "/admin";
+        window.location.href = "/inventory/admin";
         return;
       }
 
