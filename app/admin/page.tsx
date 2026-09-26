@@ -283,9 +283,9 @@ export default function AdminPage() {
           <button
             type="button"
             onClick={() =>
-              (window.location.href =
-                "/admin/novo-produto")
-            }
+  (window.location.href =
+    "/inventory/admin/novo-produto")
+}
             className="mt-7 bg-black text-white px-5 py-3 rounded-xl font-medium"
           >
             + Adicionar produto
@@ -407,9 +407,9 @@ export default function AdminPage() {
                           <button
                             type="button"
                             onClick={() =>
-                              (window.location.href =
-                                `/admin/editar-produto?id=${produto.id}`)
-                            }
+  (window.location.href =
+    `/inventory/admin/editar-produto?id=${produto.id}`)
+}
                             className="bg-black text-white px-4 py-2 rounded-lg text-sm"
                           >
                             Editar
