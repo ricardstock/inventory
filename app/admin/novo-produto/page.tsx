@@ -19,7 +19,7 @@ export default function NovoProdutoPage() {
   const [nome, setNome] = useState("");
   const [sku, setSku] = useState("");
   const [preco, setPreco] = useState("");
-
+  const [precoRetail, setPrecoRetail] = useState("");
   const [categoria, setCategoria] = useState("sneakers");
   const [tags, setTags] = useState<string[]>([]);
   const [observacoes, setObservacoes] = useState("");
@@ -224,8 +224,12 @@ export default function NovoProdutoPage() {
         .insert({
           name: nome.trim(),
           sku: sku.trim(),
-          price: precoNumero,
-          image_url: imageUrl,
+price: precoNumero,
+retail_price:
+  precoRetail.trim() === ""
+    ? null
+    : Number(precoRetail),
+image_url: imageUrl,
 
           category: categoria,
           tags: tags,
@@ -415,7 +419,29 @@ export default function NovoProdutoPage() {
 
           </div>
 
-          {/* CATEGORIA */}
+{/* PREÇO RETAIL */}
+
+<div className="mb-5">
+  <label className="block text-sm font-semibold mb-2">
+    Retail Price (€)
+  </label>
+
+  <input
+    type="number"
+    min="0"
+    step="0.01"
+    placeholder="Ex: 189.99"
+    value={precoRetail}
+    onChange={(e) => setPrecoRetail(e.target.value)}
+    className="w-full border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-black"
+  />
+
+  <p className="text-xs text-gray-400 mt-2">
+    Opcional. Será apresentado riscado no catálogo.
+  </p>
+</div>
+
+{/* CATEGORIA */}
 
           <div className="mb-7">
             <label className="block text-sm font-semibold mb-2">

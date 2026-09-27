@@ -17,7 +17,8 @@ type Product = {
   name: string;
   sku: string;
   price: number;
-  image_url: string | null;
+retail_price: number | null;
+image_url: string | null;
   category: string | null;
   tags: string[] | null;
   notes: string | null;
@@ -393,20 +394,18 @@ export default function Home() {
                 return (
                   <article
                     key={produto.id}
-                    className="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-gray-300 transition"
-                  >
+className="bg-white rounded-[28px] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_14px_40px_rgba(0,0,0,0.13)] hover:-translate-y-1 transition-all duration-300 flex flex-col"                  >
 
                     {/* IMAGEM */}
 
-                    <div className="h-72 bg-white flex items-center justify-center p-8 relative">
-
+<div className="h-56 bg-[#fafafa] flex items-center justify-center p-5 relative m-3 mb-0 rounded-[22px]">
                       <img
                         src={
                           produto.image_url ||
                           "/products/air-force-white.png"
                         }
                         alt={produto.name}
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-contain transition-transform duration-300 hover:scale-[1.04]"
                       />
 
                       {produto.category && (
@@ -421,13 +420,12 @@ export default function Home() {
 
                     {/* INFORMAÇÃO */}
 
-                    <div className="p-6">
-
-                      <p className="text-[11px] text-gray-400 tracking-wide mb-2">
+<div className="px-6 pt-4 pb-5 flex flex-col flex-1">
+                     <p className="text-xs text-gray-400 font-medium tracking-wide mb-2">
                         {produto.sku}
                       </p>
 
-                      <h2 className="text-lg font-bold leading-snug">
+                     <h2 className="text-[19px] font-bold leading-snug tracking-[-0.01em]">
                         {produto.name}
                       </h2>
 
@@ -456,7 +454,7 @@ export default function Home() {
 
                       {tamanhos.length >
                         0 && (
-                        <div className="mt-6">
+                        <div className="mt-4">
 
                           <p className="text-xs text-gray-400 mb-3">
                             {t.sizesAvailable}
@@ -470,7 +468,7 @@ export default function Home() {
                                   key={
                                     tamanho.id
                                   }
-                                  className="border border-gray-200 rounded-lg px-3 py-2 text-sm"
+                                  className="bg-gray-50 border border-gray-200 rounded-full px-4 py-2 text-sm font-medium"
                                 >
                                   {tamanho.size}
 
@@ -508,19 +506,31 @@ export default function Home() {
 
                       {/* PREÇO / STOCK */}
 
-                      <div className="flex justify-between items-end mt-7 pt-5 border-t border-gray-100">
+<div className="flex justify-between items-center mt-auto pt-4 border-t border-gray-100">
+                         <div className="flex items-baseline gap-3 flex-wrap">
+  {produto.retail_price != null &&
+    Number(produto.retail_price) > Number(produto.price) && (
+      <span className="text-sm text-gray-400 line-through">
+        {Number(produto.retail_price).toFixed(2)} €
+      </span>
+    )}
 
-                        <div>
-  <p className="text-xl font-bold">
+  <span
+    className={
+      produto.retail_price != null &&
+      Number(produto.retail_price) > Number(produto.price)
+        ? "text-2xl font-bold text-green-700"
+        : "text-2xl font-bold text-black"
+    }
+  >
     {Number(produto.price).toFixed(2)} €
-  </p>
+  </span>
 </div>
-
                         <span
                           className={
                             stock > 0
-                              ? "text-xs bg-gray-100 px-3 py-2 rounded-full"
-                              : "text-xs bg-red-50 text-red-600 px-3 py-2 rounded-full"
+  ? "text-xs font-medium bg-gray-100 text-gray-700 px-4 py-2 rounded-full whitespace-nowrap"
+  : "text-xs font-medium bg-red-50 text-red-600 px-4 py-2 rounded-full whitespace-nowrap"
                           }
                         >
                           {stock}{" "}

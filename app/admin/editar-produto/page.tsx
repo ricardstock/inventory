@@ -23,7 +23,7 @@ export default function EditarProdutoPage() {
   const [nome, setNome] = useState("");
   const [sku, setSku] = useState("");
   const [preco, setPreco] = useState("");
-
+const [precoRetail, setPrecoRetail] = useState("");
   const [categoria, setCategoria] = useState("sneakers");
   const [tags, setTags] = useState<string[]>([]);
   const [observacoes, setObservacoes] = useState("");
@@ -74,8 +74,10 @@ window.location.href = "/inventory/admin";
           id,
           name,
           sku,
-          price,
-          image_url,
+          sku,
+price,
+retail_price,
+image_url,
           category,
           tags,
           notes,
@@ -103,6 +105,11 @@ window.location.href = "/inventory/admin";
       setNome(data.name ?? "");
       setSku(data.sku ?? "");
       setPreco(String(data.price ?? ""));
+      setPrecoRetail(
+  data.retail_price != null
+    ? String(data.retail_price)
+    : ""
+);
       setImagemUrl(data.image_url ?? "");
 
       setCategoria(data.category ?? "sneakers");
@@ -440,7 +447,11 @@ window.location.href = "/inventory/admin";
           name: nome.trim(),
           sku: sku.trim(),
           price: precoNumero,
-          image_url: imagemFinal,
+retail_price:
+  precoRetail.trim() === ""
+    ? null
+    : Number(precoRetail),
+image_url: imagemFinal,
           category: categoria,
           tags: tags,
           notes:
@@ -452,8 +463,9 @@ window.location.href = "/inventory/admin";
           id,
           name,
           sku,
-          price,
-          image_url,
+price,
+retail_price,
+image_url,
           category,
           tags,
           notes
@@ -838,7 +850,27 @@ window.location.href = "/inventory/admin";
             </div>
 
           </div>
+{/* PREÇO RETAIL */}
 
+<div className="mb-6">
+  <label className="block text-sm font-semibold mb-2">
+    Retail Price (€)
+  </label>
+
+  <input
+    type="number"
+    min="0"
+    step="0.01"
+    placeholder="Ex: 189.99"
+    value={precoRetail}
+    onChange={(e) => setPrecoRetail(e.target.value)}
+    className="w-full border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-black"
+  />
+
+  <p className="text-xs text-gray-400 mt-2">
+    Opcional. Será apresentado riscado no catálogo.
+  </p>
+</div>
           {/* CATEGORIA */}
 
           <div className="mb-7">
