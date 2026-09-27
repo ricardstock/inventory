@@ -666,7 +666,7 @@ window.location.href = "/inventory/admin";
       );
 
       window.location.href =
-        "/admin";
+        "/inventory/admin/";
 
     } catch (erro) {
       console.error(
@@ -711,7 +711,7 @@ window.location.href = "/inventory/admin";
           type="button"
           onClick={() =>
             (window.location.href =
-              "/admin")
+              "/inventory/admin/")
           }
           className="text-sm text-gray-500 hover:text-black mb-6"
         >
