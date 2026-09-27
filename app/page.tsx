@@ -241,8 +241,31 @@ export default function Home() {
               </p>
             </div>
 
-            <LanguageSwitcher />
+<div className="flex items-center gap-2">
 
+  <a
+    href="https://wa.me/351934329305"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="hidden sm:flex items-center px-4 py-2 rounded-full border border-gray-200 text-sm font-medium hover:bg-gray-50 transition"
+  >
+    WhatsApp
+  </a>
+
+  <button
+    type="button"
+    onClick={() => {
+      navigator.clipboard.writeText("ricardofilipe");
+      alert("Discord copiado: ricardofilipe");
+    }}
+    className="hidden sm:flex items-center px-4 py-2 rounded-full border border-gray-200 text-sm font-medium hover:bg-gray-50 transition"
+  >
+    Discord
+  </button>
+
+  <LanguageSwitcher />
+
+</div>
           </div>
 
         </div>
