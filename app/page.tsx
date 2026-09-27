@@ -253,15 +253,17 @@ export default function Home() {
   </a>
 
   <button
-    type="button"
-    onClick={() => {
-      navigator.clipboard.writeText("ricardofilipe");
-      alert("Discord copiado: ricardofilipe");
-    }}
-    className="hidden sm:flex items-center px-4 py-2 rounded-full border border-gray-200 text-sm font-medium hover:bg-gray-50 transition"
-  >
-    Discord
-  </button>
+  type="button"
+  onClick={() => {
+    navigator.clipboard.writeText("ricardofilipe");
+  }}
+  title="Click to copy Discord username"
+  className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 text-sm font-medium hover:bg-gray-50 transition"
+>
+  <span>Discord</span>
+  <span className="text-gray-400">·</span>
+  <span className="text-gray-600">ricardofilipe</span>
+</button>
 
   <LanguageSwitcher />
 
