@@ -251,32 +251,58 @@ export default function Home() {
 
       <section className="max-w-7xl mx-auto px-6 lg:px-8 py-8">
 
-        {/* PESQUISA */}
+        {/* PESQUISA + ORDENAÇÃO */}
 
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+<div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
 
-          <div className="w-full lg:max-w-xl">
+  <div className="flex flex-col sm:flex-row gap-3 w-full lg:max-w-3xl">
 
-            <input
-              type="text"
-              value={pesquisa}
-              onChange={(e) =>
-                setPesquisa(e.target.value)
-              }
-              placeholder={t.search}
-              className="w-full bg-white border border-gray-200 rounded-2xl px-5 py-4 outline-none focus:border-black transition"
-            />
+    <input
+      type="text"
+      value={pesquisa}
+      onChange={(e) => setPesquisa(e.target.value)}
+      placeholder={t.search}
+      className="flex-1 bg-white border border-gray-200 rounded-2xl px-5 py-4 outline-none focus:border-black transition"
+    />
 
-          </div>
+    <select
+      value={ordenacao}
+      onChange={(e) => setOrdenacao(e.target.value)}
+      className="bg-white border border-gray-200 rounded-2xl px-5 py-4 text-sm outline-none cursor-pointer sm:w-56"
+    >
+      <option value="recentes">
+        {language === "en"
+          ? "Newest → Oldest"
+          : "Mais recente → Mais antigo"}
+      </option>
 
-          <div className="text-sm text-gray-400">
-            {produtosFiltrados.length}{" "}
-            {language === "en"
-              ? "products"
-              : "produtos"}
-          </div>
+      <option value="antigos">
+        {language === "en"
+          ? "Oldest → Newest"
+          : "Mais antigo → Mais recente"}
+      </option>
 
-        </div>
+      <option value="preco-menor">
+        {language === "en"
+          ? "Price: Low → High"
+          : "Preço: Menor → Maior"}
+      </option>
+
+      <option value="preco-maior">
+        {language === "en"
+          ? "Price: High → Low"
+          : "Preço: Maior → Menor"}
+      </option>
+    </select>
+
+  </div>
+
+  <div className="text-sm text-gray-400">
+    {produtosFiltrados.length}{" "}
+    {language === "en" ? "products" : "produtos"}
+  </div>
+
+</div>
 
         {/* CATEGORIAS */}
 
@@ -331,37 +357,7 @@ export default function Home() {
   </button>
 
 </div>
-<div className="mt-4">
-  <select
-    value={ordenacao}
-    onChange={(e) => setOrdenacao(e.target.value)}
-    className="bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm outline-none cursor-pointer"
-  >
-    <option value="recentes">
-      {language === "en"
-        ? "Newest → Oldest"
-        : "Mais recente → Mais antigo"}
-    </option>
 
-    <option value="antigos">
-      {language === "en"
-        ? "Oldest → Newest"
-        : "Mais antigo → Mais recente"}
-    </option>
-
-    <option value="preco-menor">
-      {language === "en"
-        ? "Price: Low → High"
-        : "Preço: Menor → Maior"}
-    </option>
-
-    <option value="preco-maior">
-      {language === "en"
-        ? "Price: High → Low"
-        : "Preço: Maior → Menor"}
-    </option>
-  </select>
-</div>
       </section>
 
       {/* PRODUTOS */}
