@@ -43,6 +43,7 @@ export default function Home() {
   const [produtos, setProdutos] = useState<Product[]>([]);
   const [pesquisa, setPesquisa] = useState("");
   const [categoria, setCategoria] = useState("sneakers");
+  const [ordenacao, setOrdenacao] = useState("recentes");
   const [language, setLanguage] = useState<Language>("en");
   const [carregando, setCarregando] = useState(true);
 
@@ -136,33 +137,42 @@ export default function Home() {
   // =========================
 
   const produtosFiltrados = useMemo(() => {
-    const pesquisaNormalizada =
-      pesquisa.trim().toLowerCase();
+  const pesquisaNormalizada =
+    pesquisa.trim().toLowerCase();
 
-    return produtos.filter((produto) => {
-      const correspondeCategoria =
-        categoria === "all" ||
-        produto.category === categoria;
+  const lista = produtos.filter((produto) => {
+    const correspondeCategoria =
+      categoria === "all" ||
+      produto.category === categoria;
 
-      const correspondePesquisa =
-        !pesquisaNormalizada ||
-        produto.name
-          .toLowerCase()
-          .includes(pesquisaNormalizada) ||
-        produto.sku
-          .toLowerCase()
-          .includes(pesquisaNormalizada);
+    const correspondePesquisa =
+      !pesquisaNormalizada ||
+      produto.name
+        .toLowerCase()
+        .includes(pesquisaNormalizada) ||
+      produto.sku
+        .toLowerCase()
+        .includes(pesquisaNormalizada);
 
-      return (
-        correspondeCategoria &&
-        correspondePesquisa
-      );
-    });
-  }, [
-    produtos,
-    pesquisa,
-    categoria,
-  ]);
+    return correspondeCategoria && correspondePesquisa;
+  });
+
+  return [...lista].sort((a, b) => {
+    if (ordenacao === "preco-menor") {
+      return Number(a.price) - Number(b.price);
+    }
+
+    if (ordenacao === "preco-maior") {
+      return Number(b.price) - Number(a.price);
+    }
+
+    if (ordenacao === "antigos") {
+      return a.id - b.id;
+    }
+
+    return b.id - a.id;
+  });
+}, [produtos, pesquisa, categoria, ordenacao]);
 
   // =========================
   // STOCK TOTAL
@@ -321,7 +331,37 @@ export default function Home() {
   </button>
 
 </div>
+<div className="mt-4">
+  <select
+    value={ordenacao}
+    onChange={(e) => setOrdenacao(e.target.value)}
+    className="bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm outline-none cursor-pointer"
+  >
+    <option value="recentes">
+      {language === "en"
+        ? "Newest → Oldest"
+        : "Mais recente → Mais antigo"}
+    </option>
 
+    <option value="antigos">
+      {language === "en"
+        ? "Oldest → Newest"
+        : "Mais antigo → Mais recente"}
+    </option>
+
+    <option value="preco-menor">
+      {language === "en"
+        ? "Price: Low → High"
+        : "Preço: Menor → Maior"}
+    </option>
+
+    <option value="preco-maior">
+      {language === "en"
+        ? "Price: High → Low"
+        : "Preço: Maior → Menor"}
+    </option>
+  </select>
+</div>
       </section>
 
       {/* PRODUTOS */}
