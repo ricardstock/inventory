@@ -337,25 +337,22 @@ image_url,
         return;
       }
 
-      const quantidade = Number(
-        tamanho.quantity
-      );
+      const quantidadeTexto = String(tamanho.quantity).trim();
 
-      if (
-        String(
-          tamanho.quantity
-        ).trim() === "" ||
-        Number.isNaN(quantidade) ||
-        quantidade < 0 ||
-        !Number.isInteger(
-          quantidade
-        )
-      ) {
-        alert(
-          `A quantidade do tamanho ${tamanho.size} não é válida.`
-        );
-        return;
-      }
+if (quantidadeTexto !== "") {
+  const quantidade = Number(quantidadeTexto);
+
+  if (
+    Number.isNaN(quantidade) ||
+    quantidade < 0 ||
+    !Number.isInteger(quantidade)
+  ) {
+    alert(
+      `A quantidade do tamanho ${tamanho.size} não é válida.`
+    );
+    return;
+  }
+}
     }
 
     setGuardando(true);
@@ -578,9 +575,10 @@ image_url,
               tamanho.size
             ).trim(),
 
-            quantity: Number(
-              tamanho.quantity
-            ),
+            quantity:
+  String(tamanho.quantity).trim() === ""
+    ? 1
+    : Number(tamanho.quantity),
 
             sort_order: index,
           })
@@ -637,10 +635,10 @@ image_url,
                 item.size
               ).trim(),
 
-              quantity: Number(
-                item.quantity
-              ),
-
+              quantity:
+  String(item.quantity).trim() === ""
+    ? 1
+    : Number(item.quantity),
               sort_order:
                 item.posicao,
             })
@@ -1049,17 +1047,18 @@ image_url,
 
                       <div>
 
-                        <label className="block text-xs text-gray-500 mb-1">
-                          Quantidade
-                        </label>
+  <label className="block text-xs text-gray-500 mb-1">
+    Quantidade (opcional)
+  </label>
 
-                        <input
-                          type="number"
-                          min="0"
-                          step="1"
-                          value={
-                            tamanho.quantity
-                          }
+  <input
+    type="number"
+    min="0"
+    step="1"
+    placeholder="1 por defeito"
+    value={
+      tamanho.quantity
+    }
                           onChange={(e) =>
                             alterarTamanho(
                               index,

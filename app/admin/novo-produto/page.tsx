@@ -147,15 +147,7 @@ export default function NovoProdutoPage() {
     }
 
     for (const item of tamanhos) {
-      if (
-        item.tamanho.trim() !== "" &&
-        item.quantidade.trim() === ""
-      ) {
-        alert(
-          `Indica a quantidade do tamanho ${item.tamanho}.`
-        );
-        return;
-      }
+      
 
       if (
         item.quantidade !== "" &&
@@ -267,7 +259,9 @@ image_url: imageUrl,
             product_id: data.id,
             size: item.tamanho.trim(),
             quantity:
-              Number(item.quantidade) || 0,
+  item.quantidade.trim() === ""
+    ? 1
+    : Number(item.quantidade),
             sort_order: index,
           }));
 
@@ -595,14 +589,14 @@ image_url: imageUrl,
 
                       <div>
                         <label className="block text-xs text-gray-500 mb-1">
-                          Quantidade
-                        </label>
+  Quantidade (opcional)
+</label>
 
                         <input
                           type="number"
                           min="0"
                           step="1"
-                          placeholder="Ex: 3"
+                          placeholder="1 por defeito"
                           value={
                             item.quantidade
                           }
