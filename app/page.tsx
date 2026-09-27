@@ -472,7 +472,6 @@ className="bg-white rounded-[28px] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0
                                 >
                                   {tamanho.size}
 
-                                  {tamanho.size}
 
 {Number(tamanho.quantity) > 1 && (
   <b className="ml-1">
