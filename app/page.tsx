@@ -42,7 +42,7 @@ const TAG_LABELS = {
 export default function Home() {
   const [produtos, setProdutos] = useState<Product[]>([]);
   const [pesquisa, setPesquisa] = useState("");
-  const [categoria, setCategoria] = useState("all");
+  const [categoria, setCategoria] = useState("sneakers");
   const [language, setLanguage] = useState<Language>("en");
   const [carregando, setCarregando] = useState(true);
 
@@ -270,67 +270,57 @@ export default function Home() {
 
         {/* CATEGORIAS */}
 
-        <div className="flex flex-wrap gap-2 mt-6">
+<div className="flex flex-wrap gap-2 mt-6">
 
-          <button
-            type="button"
-            onClick={() =>
-              setCategoria("all")
-            }
-            className={
-              categoria === "all"
-                ? "bg-black text-white px-5 py-2.5 rounded-full text-sm font-medium"
-                : "bg-white border border-gray-200 px-5 py-2.5 rounded-full text-sm font-medium text-gray-600 hover:border-gray-400"
-            }
-          >
-            {language === "en"
-              ? "All"
-              : "Todos"}
-          </button>
+  <button
+    type="button"
+    onClick={() => setCategoria("sneakers")}
+    className={
+      categoria === "sneakers"
+        ? "bg-black text-white px-5 py-2.5 rounded-full text-sm font-medium"
+        : "bg-white border border-gray-200 px-5 py-2.5 rounded-full text-sm font-medium text-gray-600 hover:border-gray-400"
+    }
+  >
+    {t.sneakers}
+  </button>
 
-          <button
-            type="button"
-            onClick={() =>
-              setCategoria("sneakers")
-            }
-            className={
-              categoria === "sneakers"
-                ? "bg-black text-white px-5 py-2.5 rounded-full text-sm font-medium"
-                : "bg-white border border-gray-200 px-5 py-2.5 rounded-full text-sm font-medium text-gray-600 hover:border-gray-400"
-            }
-          >
-            {t.sneakers}
-          </button>
+  <button
+    type="button"
+    onClick={() => setCategoria("vestuario")}
+    className={
+      categoria === "vestuario"
+        ? "bg-black text-white px-5 py-2.5 rounded-full text-sm font-medium"
+        : "bg-white border border-gray-200 px-5 py-2.5 rounded-full text-sm font-medium text-gray-600 hover:border-gray-400"
+    }
+  >
+    {t.clothing}
+  </button>
 
-          <button
-            type="button"
-            onClick={() =>
-              setCategoria("vestuario")
-            }
-            className={
-              categoria === "vestuario"
-                ? "bg-black text-white px-5 py-2.5 rounded-full text-sm font-medium"
-                : "bg-white border border-gray-200 px-5 py-2.5 rounded-full text-sm font-medium text-gray-600 hover:border-gray-400"
-            }
-          >
-            {t.clothing}
-          </button>
+  <button
+    type="button"
+    onClick={() => setCategoria("acessorios")}
+    className={
+      categoria === "acessorios"
+        ? "bg-black text-white px-5 py-2.5 rounded-full text-sm font-medium"
+        : "bg-white border border-gray-200 px-5 py-2.5 rounded-full text-sm font-medium text-gray-600 hover:border-gray-400"
+    }
+  >
+    {t.accessories}
+  </button>
 
-          <button
-            type="button"
-            onClick={() =>
-              setCategoria("acessorios")
-            }
-            className={
-              categoria === "acessorios"
-                ? "bg-black text-white px-5 py-2.5 rounded-full text-sm font-medium"
-                : "bg-white border border-gray-200 px-5 py-2.5 rounded-full text-sm font-medium text-gray-600 hover:border-gray-400"
-            }
-          >
-            {t.accessories}
-          </button>
+  <button
+    type="button"
+    onClick={() => setCategoria("all")}
+    className={
+      categoria === "all"
+        ? "bg-black text-white px-5 py-2.5 rounded-full text-sm font-medium"
+        : "bg-white border border-gray-200 px-5 py-2.5 rounded-full text-sm font-medium text-gray-600 hover:border-gray-400"
+    }
+  >
+    {language === "en" ? "All" : "Todos"}
+  </button>
 
-        </div>
+</div>
 
       </section>
 
