@@ -287,7 +287,7 @@ export default function NovoProdutoPage() {
 
       alert("Produto criado com sucesso!");
 
-      window.location.href = "/admin";
+      window.location.href = "/inventory/admin/";
     } catch (erro) {
       console.error(erro);
 
@@ -308,7 +308,7 @@ export default function NovoProdutoPage() {
         <button
           type="button"
           onClick={() =>
-            (window.location.href = "/admin")
+            (window.location.href = "/inventory/admin/")
           }
           className="text-sm text-gray-500 hover:text-black mb-6"
         >
